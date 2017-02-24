@@ -157,6 +157,9 @@
         return null;
     }
 
+    /**
+     * reverses the order of the tree
+     */
     BinaryTree.prototype.reverse = function(){
         var rootNode = this.rootNode;
 
