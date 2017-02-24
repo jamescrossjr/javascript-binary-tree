@@ -157,6 +157,33 @@ BinaryTree.prototype.getNode = function(value){
     return null;
 }
 
+BinaryTree.prototype.reverse = function(){
+    var rootNode = this.rootNode;
+
+    swapChildren(rootNode);
+
+    function swapChildren(node){
+        var newLeft, newRight;
+        
+        if(!node){
+            return;
+        }
+
+        //preserve children;
+        newRight = node.left ? Object.assign({}, node.left) : null;
+        newLeft = node.right ? Object.assign({}, node.right) : null;        
+        node.left = newLeft;
+        node.right = newRight;
+
+        if(node.left){
+            swapChildren(node.left);
+        }
+        if(node.right){
+            swapChildren(node.right);
+        }
+    }
+}
+
 //trying it out :)
 var tree = new BinaryTree();
 tree.addNode(new Node(2));
@@ -171,6 +198,8 @@ console.log(JSON.stringify(tree.rootNode));
 tree.removeNode(2);
 console.log(JSON.stringify(tree.rootNode));
 console.log(JSON.stringify(tree.getNode(7)));
+tree.reverse();
+console.log(JSON.stringify(tree.rootNode));
 
 
 
